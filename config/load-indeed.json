@@ -1,0 +1,26 @@
+{
+  "description": "",
+  "api_doc": "https://ads.indeed.com/jobroll/xmlfeed",
+
+  "client": {
+    "class": "\\indeed\\Client",
+    "config": {
+      "base_uri": "http://api.indeed.com/ads/apisearch",
+
+      "default_request_params": {
+        "publisher": "",
+        "v": 2,
+        "format": "json",
+        "co": "us",
+        "useragent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
+      },
+
+      "searches": [
+        {"q": "Devops remote", "limit": 1},
+        {"q": "PHP remote", "limit": 1}
+      ]
+
+    }
+
+  }
+}

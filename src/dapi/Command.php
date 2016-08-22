@@ -4,6 +4,8 @@ namespace dapi;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use \Cilex\Command\Command as VendorCommand;
 
 /**
@@ -12,6 +14,11 @@ use \Cilex\Command\Command as VendorCommand;
  */
 abstract class Command extends VendorCommand
 {
+    /**
+     * @var array
+     */
+    protected $config = [];
+
     /**
      * @var InputInterface
      */
@@ -23,7 +30,45 @@ abstract class Command extends VendorCommand
     protected $output;
 
     /**
-     * Used to get the input(argument|option|any) data in a normalized fashion.
+     * Configure this tasks options and arguments.
+     */
+    protected function configure()
+    {
+        $this
+            ->addOption('config_file', 'c', InputOption::VALUE_REQUIRED, 'Path to configuration file')
+        ;
+
+        parent::configure();
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param $key
+     * @param null $default_value
+     * @return mixed|null
+     */
+    public function getConfigBy($key, $default_value = null)
+    {
+        return isset($this->config[$key])? $this->config[$key] : $default_value;
+    }
+
+    /**
+     * @return InputInterface
+     */
+    public function getInput()
+    {
+        return $this->input;
+    }
+
+    /**
+     * Get the input(argument|option|any) data.
      *
      * @param $name
      * @param null $default_value
@@ -61,6 +106,22 @@ abstract class Command extends VendorCommand
     }
 
     /**
+     * @return OutputInterface
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasConfig(): bool
+    {
+        return isset($this->config) && !empty($this->config);
+    }
+
+    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      */
@@ -68,14 +129,33 @@ abstract class Command extends VendorCommand
     {
         $this->setInput($input);
         $this->setOutput($output);
+        $this->loadConfigurationFile();
     }
 
     /**
-     * @return InputInterface
+     * @throws \RuntimeException
      */
-    public function getInput()
+    public function loadConfigurationFile()
     {
-        return $this->input;
+        $config_file    = $this->getInputData('config_file');
+        $config         = [];
+
+        if ($config_file && is_file($config_file)) {
+            $config = @json_decode(file_get_contents($config_file), true);
+            if (json_last_error()) {
+                throw new \RuntimeException('Error parsing configuration file json:[' . $config_file . ']');
+            }
+        }
+
+        $this->setConfig($config);
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
     }
 
     /**
@@ -84,14 +164,6 @@ abstract class Command extends VendorCommand
     public function setInput($input)
     {
         $this->input = $input;
-    }
-
-    /**
-     * @return OutputInterface
-     */
-    public function getOutput()
-    {
-        return $this->output;
     }
 
     /**

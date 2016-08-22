@@ -16,12 +16,16 @@
   "license" : "MIT",
 
   "require": {
-    "cilex/cilex": "dev-master"
+    "cilex/cilex": "dev-master",
+    "guzzlehttp/guzzle": "~6.0",
+    "doctrine/inflector": "^1.1"
   },
 
   "autoload": {
     "psr-4": {
-      "dapi\\": "src/dapi"
+
+      "dapi\\": "src/dapi",
+      "indeed\\": "src/indeed"
     }
   }
 }
