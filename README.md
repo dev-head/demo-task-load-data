@@ -51,4 +51,12 @@ vagrant provision
 
 ----
 
+Use
+---
+
+```
+php bin/console load -c config/load-indeed.json
+```
+
+
 
