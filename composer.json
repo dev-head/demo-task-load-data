@@ -17,6 +17,11 @@
 
   "require": {
     "cilex/cilex": "dev-master"
-  }
+  },
 
+  "autoload": {
+    "psr-4": {
+      "dapi\\": "src/dapi"
+    }
+  }
 }
