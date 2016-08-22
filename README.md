@@ -1,7 +1,7 @@
-Default PHP Project
-============
+Demo Task :: Load Data
+======================
 
-Just a starting skeleton for some PHP projects. 
+Just a demo app that is used to load data.  
 
 ----
 
