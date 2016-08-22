@@ -1,0 +1,11 @@
+.idea/
+.DS_Store
+*.sublime-*
+*.pyc
+*.pid
+*ide-plugin.xml
+vendor/
+composer.lock
+.vagrant
+cache/*.cache
+config/vagrant.local.json

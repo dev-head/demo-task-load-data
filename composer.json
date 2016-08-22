@@ -1,0 +1,22 @@
+{
+  "name": "dev-head/demo-api-consumer",
+  "type": "library",
+  "description": "Just a testing app",
+  "authors": [
+    {
+      "name": "Dev Head",
+      "email": "me@example.com"
+    }
+  ],
+  "config": {
+    "optimize-autoloader": true
+  },
+  "keywords" : ["demo api consumer"],
+  "homepage": "https://github.com/dev-head",
+  "license" : "MIT",
+
+  "require": {
+    "cilex/cilex": "dev-master"
+  }
+
+}
