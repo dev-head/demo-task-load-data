@@ -54,9 +54,20 @@ vagrant provision
 Use
 ---
 
+#### Run task manually
 ```
 php bin/console load -c config/load-indeed.json
 ```
+
+Testing
+-------
+
+- [Peridot](http://peridot-php.github.io/)
+
+```
+./vendor/bin/peridot
+```
+
 
 
 

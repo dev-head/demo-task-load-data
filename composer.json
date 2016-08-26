@@ -1,7 +1,7 @@
 {
-  "name": "dev-head/demo-api-consumer",
+  "name": "dev-head/demo-task-load-data",
   "type": "library",
-  "description": "Just a testing app",
+  "description": "Just a demo app that is used to load data",
   "authors": [
     {
       "name": "Dev Head",
@@ -11,19 +11,23 @@
   "config": {
     "optimize-autoloader": true
   },
-  "keywords" : ["demo api consumer"],
-  "homepage": "https://github.com/dev-head",
+  "keywords" : ["vagrant php cli"],
+  "homepage": "https://github.com/dev-head/demo-task-load-data",
   "license" : "MIT",
 
   "require": {
     "cilex/cilex": "dev-master",
     "guzzlehttp/guzzle": "~6.0",
-    "doctrine/inflector": "^1.1"
+    "doctrine/inflector": "^1.1",
+  },
+
+  "require-dev": {
+    "peridot-php/peridot": "~1.15",
+    "peridot-php/peridot-jumpstart": ""
   },
 
   "autoload": {
     "psr-4": {
-
       "dapi\\": "src/dapi",
       "indeed\\": "src/indeed"
     }

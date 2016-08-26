@@ -100,7 +100,7 @@ class Client extends VendorClient
             $response   = $this->request('GET', $uri, ['query' => $query]);
             $this->validateResponse($response);
             $data   = $this->parseResponse($format, $response->getBody());
-            $return = array_merge($return, $data);  // @todo: this is overly expensive, rethink.
+            $return = array_merge($return, $data);  // @todo: this is overly expensive, revisit.
         }
 
         return $return;
@@ -137,8 +137,12 @@ class Client extends VendorClient
 
         switch ($format) {
             case 'json':
-                $return = \GuzzleHttp\json_decode($response, true);
-                $return = isset($return['results'])? $return['results'] : [];
+                try {
+                    $return = \GuzzleHttp\json_decode($response, true);
+                    $return = isset($return['results'])? $return['results'] : [];
+                } catch (\Exception $e) {
+                    throw new \RuntimeException('[ERROR]::[' . __METHOD__ .']::[json decode failed]::[' . $e->getMessage() . ']');
+                }
                 break;
             default:
                 throw new \RuntimeException('[ERROR]::[' . __METHOD__ .']::[unsupported response format]::[' . $format . ']');

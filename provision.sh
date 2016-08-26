@@ -22,3 +22,5 @@ if [[ "$PHP_VERSION" != "$PHP_VERSION_INSTALLED" ]]; then
     $PHP_VERSION-mbstring $PHP_VERSION-bcmath $PHP_VERSION-xml $PHP_VERSION-pdo $PHP_VERSION-mysqlnd \
     $PHP_VERSION-process $PHP_VERSION-gd $PHP_VERSION-soap
 fi
+
+

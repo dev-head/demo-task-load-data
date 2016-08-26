@@ -82,7 +82,7 @@ abstract class Command extends VendorCommand
         $return = null;
 
         if (!$input) {
-            throw new \RuntimeException('Missing valid input object.');
+            throw new \RuntimeException('[ERROR]::[' . __METHOD__ .']::[missing valid input object]');
         }
 
         switch ($type) {
@@ -98,11 +98,7 @@ abstract class Command extends VendorCommand
                 break;
         }
 
-        if (!$return) {
-            $return = $default_value;
-        }
-
-        return $return;
+        return $return = $return ?: $default_value;
     }
 
     /**
@@ -133,6 +129,7 @@ abstract class Command extends VendorCommand
     }
 
     /**
+     * @todo support loading other configuration types: (ini,yaml,php)
      * @throws \RuntimeException
      */
     public function loadConfigurationFile()

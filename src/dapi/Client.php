@@ -90,7 +90,7 @@ final class Client implements ClientInterface
     }
 
     /**
-     * Stub for interface.
+     * Proxy defined for interface.
      */
     public function search()
     {
